@@ -42,10 +42,26 @@ namespace util
         }
 
         // BACKGROUND MUSIC
+        // Returns 'true' if the background music audio source is playing.
+        public bool IsBackgroundMusicPlaying()
+        {
+            return bgmSource.isPlaying;
+        }
+
+        // Returns 'true' if the background music audio source is playing the provided audio clip.
+        // Returns 'false' if the audio clip is wrong or if the BGM audio source isn't playing.
+        // NOTE: the provided audio clip must be the clip set to the BGM audio source...
+        // For that condition check to return true.
+        public bool IsBackgroundMusicPlaying(AudioClip audioClip)
+        {
+            return bgmSource.isPlaying && bgmSource.clip == audioClip;
+        }
+
         // Plays the provided background music.
         // The arguments 'loopStart' and 'loopEnd' are used for the BGM looper.
         public void PlayBackgroundMusic(AudioClip bgmClip, float loopStart, float loopEnd, float delay)
         {
+            // Checks if BGM source is set.
             if (bgmSource != null)
             {
                 // If the looper has been set, change it thorugh that.
